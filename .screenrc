@@ -1,0 +1,8 @@
+termcapinfo xterm ti@:te@
+vbell
+
+hardstatus alwayslastline
+hardstatus string "%w%=%m/%d %c"
+
+bind k focus up
+bind j focus down
