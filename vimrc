@@ -1,4 +1,5 @@
 syntax on
+filetype indent plugin on
 set autoindent
 set smarttab
 set sw=2
