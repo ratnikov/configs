@@ -12,7 +12,7 @@ function check_monitor(device)
     return false
   else
     local cmd = string.format(
-      "xrandr --output eDP-1 --primary --mode 1920x1080 --pos 3332x5004 --rotate normal --output DP-1 --off --output %s --mode 2560x1440 --pos 3012x3564 --rotate normal --output DP-2 --off",
+      "xrandr --output eDP-1 --primary --mode 1920x1080 --pos 3332x5004 --rotate normal --output %s --auto --pos 3012x3564 --rotate normal",
       device)
     fd = io.popen(cmd)
     fd:close()
