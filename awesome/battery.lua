@@ -4,7 +4,8 @@ battery_widget = wibox.widget.textbox()
 battery_widget:set_align("right")
 
 function battery_markup()
-  local fd = io.popen("acpi | grep 'Battery 0'")
+  -- Use grep to disambiguate battery vs. USB hub by 'rate unformation unavalable'
+  local fd = io.popen("acpi | grep -v 'rate information unavailable'")
   local acpi = fd:read("*all")
   fd:close()
 
