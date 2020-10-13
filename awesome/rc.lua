@@ -513,7 +513,7 @@ awful.rules.rules = {
       properties = { floating = false },
     },
 
-    -- Make sure the "touch the gnubby" issue is well visible.
+    -- Make sure the ssh related dialogs are well visible.
     { rule = { class = "Ssh-askpass" },
       properties = { floating = false, top = true },
     },
