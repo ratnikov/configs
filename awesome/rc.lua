@@ -16,6 +16,7 @@ require("debian.menu")
 require("volume")
 require("battery")
 require("monitor")
+require("cpu")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -223,6 +224,7 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
 	    volume_widget,
+			cpu_widget,
 	    battery_widget,
 	    monitor_widget,
 	    require("gcert"),
