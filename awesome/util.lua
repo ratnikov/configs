@@ -1,5 +1,7 @@
 local u = {}
 
+local n = require "naughty";
+
 function u.pread(cmd)
   local fd = io.popen(cmd)
   local read = fd:read("*all")
@@ -19,5 +21,8 @@ function u.timed_widget(cb, timeout)
   t:start()
 end
 
+function u.debug(msg)
+  n.notify({text = msg})
+end
 
 return u

@@ -1,3 +1,4 @@
+local spawn = require("awful").spawn;
 local wibox = require("wibox")
 local util = require("util")
 
@@ -22,25 +23,10 @@ function check_monitor(device)
 end
 
 function callback()
-  local txt = "OFF"
-
-  -- Iterate over all the known non-primary monitor options and see if any of them are connected.
-  -- If they are, connect it.
-  --
-  -- Only pick the first one since positioning of multiple extra displays isn't designed for.
-  for i, device in ipairs({ "HDMI-1", "DP-1", "DP-2"}) do
-    local status = check_monitor(device)
-
-    if status then
-      txt = device
-
-      -- check_monitor isn't designed to juggle more than 1 extra displays, so stop after we found
-      -- the first one.
-      break
-    end
-  end
-
-  monitor_widget:set_markup("<span>M=" .. txt .. "</span>")
+  local known_devices = "HDMI-1 DP-1 DP-2"
+  spawn.easy_async_with_shell("2>/dev/null .config/awesome/configure_monitors.sh " .. known_devices, function(configured)
+    monitor_widget:set_markup("<span>M=" .. configured .. "</span>")
+  end)
 end
 
 monitor_widget = wibox.widget.textbox()
