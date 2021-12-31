@@ -2,13 +2,6 @@ local u = {}
 
 local n = require "naughty";
 
-function u.pread(cmd)
-  local fd = io.popen(cmd)
-  local read = fd:read("*all")
-  fd:close()
-  return read
-end
-
 function u.timed_widget(cb, timeout)
   cb()
 

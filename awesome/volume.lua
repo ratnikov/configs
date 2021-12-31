@@ -5,52 +5,23 @@ volume_widget = wibox.widget.textbox()
 volume_widget:set_align("right")
 
 function update_volume_num(widget)
-   local fd = io.popen("amixer sget Master")
-   local status = fd:read("*all")
-   fd:close()
- 
-   -- local volume = tonumber(string.match(status, "(%d?%d?%d)%%")) / 100
-   local volume = string.match(status, "(%d?%d?%d)%%")
-   volume = string.format("% 3d", volume)
- 
-   status = string.match(status, "%[(o[^%]]*)%]")
+  awful.spawn.easy_async_with_shell("amixer sget Master", function(status)
+    -- local volume = tonumber(string.match(status, "(%d?%d?%d)%%")) / 100
+    local volume = string.match(status, "(%d?%d?%d)%%")
+    volume = string.format("% 3d", volume)
 
-   if string.find(status, "on", 1, true) then
-       -- For the volume numbers
-       volume = volume .. "%"
-   else
-       -- For the mute button
-       volume = volume .. "M"
-       
-   end
-   widget:set_markup("VOL=" .. volume)
-end
+    status = string.match(status, "%[(o[^%]]*)%]")
 
-function update_volume(widget)
-   local fd = io.popen("amixer sget Master")
-   local status = fd:read("*all")
-   fd:close()
+    if string.find(status, "on", 1, true) then
+      -- For the volume numbers
+      volume = volume .. "%"
+    else
+      -- For the mute button
+      volume = volume .. "M"
 
-   local volume = tonumber(string.match(status, "(%d?%d?%d)%%")) / 100
-   -- volume = string.format("% 3d", volume)
-
-   status = string.match(status, "%[(o[^%]]*)%]")
-
-   -- starting colour
-   local sr, sg, sb = 0x3F, 0x3F, 0x3F
-   -- ending colour
-   local er, eg, eb = 0xDC, 0xDC, 0xCC
-
-   local ir = math.floor(volume * (er - sr) + sr)
-   local ig = math.floor(volume * (eg - sg) + sg)
-   local ib = math.floor(volume * (eb - sb) + sb)
-   interpol_colour = string.format("%.2x%.2x%.2x", ir, ig, ib)
-   if string.find(status, "on", 1, true) then
-       volume = " <span background='#" .. interpol_colour .. "'>   </span>"
-   else
-       volume = " <span color='red' background='#" .. interpol_colour .. "'> M </span>"
-   end
-   widget:set_markup(volume)
+    end
+    widget:set_markup("VOL=" .. volume)
+  end)
 end
 
 update_volume_num(volume_widget)
