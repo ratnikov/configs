@@ -1,0 +1,5 @@
+[alias]
+  co = checkout
+  ci = commit
+  rb = rebase
+  amend = ci --amend
