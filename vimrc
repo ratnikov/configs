@@ -1,3 +1,15 @@
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'google/vim-jsonnet'
+
+call vundle#end()            " required
+
 syntax on
 filetype indent plugin on
 set autoindent
@@ -19,3 +31,4 @@ command -nargs=? RunRailsTest :!echo "Running % -n \"/<args>/\""; ruby -Itest % 
 
 cmap <expr> run<Space> "!ruby -Itest " . expand("%") . ' -n "//"<Left><Left>'
 map <expr> gt ":RunRailsTest " . expand("<cword>") . "<CR>"
+
