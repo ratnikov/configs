@@ -3,3 +3,6 @@
   ci = commit
   rb = rebase
   amend = ci --amend
+
+[push]
+  autoSetupRemote	= true
