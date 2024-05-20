@@ -40,3 +40,9 @@ map <expr> gt ":RunRailsTest " . expand("<cword>") . "<CR>"
 augroup autoformat_settings
   autocmd FileType bzl,BUILD AutoFormatBuffer buildifier
 augroup END
+
+set expandtab
+
+" Make TABs visible.
+set list
+set listchars=tab:▸\ 
