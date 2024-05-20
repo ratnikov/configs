@@ -2,6 +2,7 @@
   co = checkout
   ci = commit
   rb = rebase
+  ri = rebase -i
   amend = ci --amend
 
 [push]
