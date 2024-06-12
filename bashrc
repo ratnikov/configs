@@ -2,8 +2,10 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+source $SCRIPT_DIR/git/git-prompt.sh
+
 alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
+PS1='[\u@\h $(__git_ps1 "git:%s") \W] '
 
 alias vi=vim
 
