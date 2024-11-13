@@ -1,6 +1,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" Try to avoid setting final end lines, as ktlint doesn't like it.
+set nofixeol
+set nofixendofline
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -11,6 +15,7 @@ Plugin 'google/vim-codefmt'
 Plugin 'google/vim-glaive'
 
 Plugin 'google/vim-jsonnet'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()            " required
 call glaive#Install()
