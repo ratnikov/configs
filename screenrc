@@ -8,4 +8,4 @@ bind k focus up
 bind j focus down
 
 # Bump scrollback so I can get more logs.
-scrollback 10000
+defscrollback 10000
